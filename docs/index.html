@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Pages Params</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>webAppy</title>
 </head>
 <body>
-    <h1>Parameter von der URL:</h1>
-    <p id="params"></p>
+    <h1 id="headTitle">webAppy</h1>
+    <div id="iframeContainer"></div>
 
     <script>
         // Funktion zum Extrahieren der Parameter aus der URL
@@ -20,16 +21,29 @@
             return params;
         }
 
-        // Funktion zum Anzeigen der Parameter auf der Webseite
-        function displayParams() {
+        // Funktion zum Erstellen des Iframe mit der URL aus dem Parameter
+        function createIframe() {
             const params = getParams();
-            const paramsElement = document.getElementById("params");
-            paramsElement.innerHTML = JSON.stringify(params);
+            if (params.hasOwnProperty("url")) {
+
+                const headTitle = document.getElementById("headTitle");
+                headTitle.parentNode.removeChild(headTitle)
+
+                const url = params["url"];
+                const iframeContainer = document.getElementById("iframeContainer");
+                const iframe = document.createElement("iframe");
+                iframe.src = url;
+                iframe.style.width = "100%";
+                iframe.style.height = "100vh"; // Füllt die gesamte Bildschirmhöhe
+                iframeContainer.appendChild(iframe);
+            } else {
+                console.error("URL-Parameter 'url' nicht angegeben.");
+            }
         }
 
-        // Die Parameter anzeigen, wenn die Seite geladen ist
+        // Das Iframe erstellen, wenn die Seite geladen ist
         window.onload = function() {
-            displayParams();
+            createIframe();
         };
     </script>
 </body>
