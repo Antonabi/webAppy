@@ -1,2 +1,36 @@
-<h1>hi, this is a test!</h1>
-omg
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Pages Params</title>
+</head>
+<body>
+    <h1>Parameter von der URL:</h1>
+    <p id="params"></p>
+
+    <script>
+        // Funktion zum Extrahieren der Parameter aus der URL
+        function getParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const params = {};
+            for (const [key, value] of urlParams) {
+                params[key] = value;
+            }
+            return params;
+        }
+
+        // Funktion zum Anzeigen der Parameter auf der Webseite
+        function displayParams() {
+            const params = getParams();
+            const paramsElement = document.getElementById("params");
+            paramsElement.innerHTML = JSON.stringify(params);
+        }
+
+        // Die Parameter anzeigen, wenn die Seite geladen ist
+        window.onload = function() {
+            displayParams();
+        };
+    </script>
+</body>
+</html>
