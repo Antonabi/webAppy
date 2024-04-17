@@ -35,6 +35,7 @@
                 iframe.src = url;
                 iframe.style.width = "100%";
                 iframe.style.height = "100vh"; // Füllt die gesamte Bildschirmhöhe
+                iframe.frameBorder = "0"
                 iframeContainer.appendChild(iframe);
             } else {
                 console.error("URL-Parameter 'url' nicht angegeben.");
